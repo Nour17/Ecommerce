@@ -1,0 +1,18 @@
+<div class="card mb-4">
+  <div class="card-img-wrapper" [routerLink]="['/items', item.id]">
+    <img src="{{item.photoUrl}}" alt="{{item.name}}" class="card-img-top">
+  </div>
+  <div class="card-body p-1">
+    <h6 class="card-title text-center mb-1">
+      {{item.name}}
+    </h6>
+    <p class="card-title text-center mb-1">
+      <i class="fa fa-star">
+        {{item.rate}}
+      </i>
+    </p>
+    <p class="card-text text-muted text-center">
+      ${{item.price}}
+    </p>
+  </div>
+</div>
