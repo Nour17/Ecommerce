@@ -6,10 +6,11 @@
     <h6 class="card-title text-center mb-1">
       {{item.name}}
     </h6>
-    <p class="card-title text-center mb-1">
-      <i class="fa fa-star">
-        {{item.rate}}
-      </i>
+    <p class="card-title text-center mb-1" *ngIf="zeroRate">
+      <i class="fa fa-star" *ngFor="let i of rateArray"></i>
+    </p>
+    <p class="card-title text-center mb-1" *ngIf="zeroRate">
+      <i class="fa fa-star" *ngFor="let i of rateArray"></i>
     </p>
     <p class="card-text text-muted text-center">
       ${{item.price}}

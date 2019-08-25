@@ -5,6 +5,7 @@ import { Item } from '../_models/item';
 import { Observable } from 'rxjs';
 import { AlertifyService } from '../_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartItemsService } from '../_services/cartItems.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,8 +21,10 @@ const httpOptions = {
 export class ItemDetailedComponent implements OnInit {
   baseUrl = environment.apiUrl;
   item: Item;
+  rateArray = [];
 
-  constructor(private http: HttpClient, private alertify: AlertifyService, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private alertify: AlertifyService
+    , private route: ActivatedRoute, private cartItem: CartItemsService) { }
 
   ngOnInit() {
     this.getItem();
@@ -30,8 +33,15 @@ export class ItemDetailedComponent implements OnInit {
   getItem() {
     this.http.get<Item>(this.baseUrl + 'items/' + this.route.snapshot.params['id'], httpOptions).subscribe((item: Item) => {
       this.item = item;
+      for (let i = 1; i <= this.item.rate; i++) {
+        this.rateArray.push(i);
+      }
     }, error => {
       this.alertify.error(error);
     });
+  }
+
+  addToCart(item) {
+    this.cartItem.addItemToCart(item);
   }
 }
