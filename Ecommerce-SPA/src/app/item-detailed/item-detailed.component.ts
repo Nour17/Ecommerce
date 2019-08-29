@@ -24,7 +24,7 @@ export class ItemDetailedComponent implements OnInit {
   rateArray = [];
 
   constructor(private http: HttpClient, private alertify: AlertifyService
-    , private route: ActivatedRoute, private cartItem: CartItemsService) { }
+    , private route: ActivatedRoute, private cartItemService: CartItemsService) { }
 
   ngOnInit() {
     this.getItem();
@@ -42,6 +42,6 @@ export class ItemDetailedComponent implements OnInit {
   }
 
   addToCart(item) {
-    this.cartItem.addItemToCart(item);
+    this.cartItemService.addItemToCart(item);
   }
 }
